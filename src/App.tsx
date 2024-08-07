@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import Form from "./components/form/Form"
+import useWeather from "./hooks/useWeather";
 const patterns = ['bg-rumo-pattern','bg-ensenada-pattern', 'bg-tijuana-pattern']
+
 function App() {
   const [backgroundClass, setBackgroundClass] = useState(patterns[0]);
- 
+ const {fetchWeather}= useWeather()
   useEffect(() => {
     const intervalId = setInterval(() => {
       setBackgroundClass((prevClass) => {
@@ -20,7 +22,9 @@ function App() {
     <div className={`h-screen  ${backgroundClass} bg-cover bg-center transition-background `}>
       <h1 className="text-6xl font-extrabold text-center text-white ">Weather App</h1>
        <div className="w-3/4  m-auto lg:grid lg:grid-cols-2 lg:items-center lg:gap-4 lg:mt-10">
-        <p><Form/></p>
+        <p><Form
+        fetchWeather={fetchWeather}
+        /></p>
         <p>2</p>
        </div>
     </div>
