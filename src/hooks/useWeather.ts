@@ -50,7 +50,7 @@ export default function useWeather() {
         },
       });
       setLoading(true);
-      const GEO_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${search.city},${search.country}&appid=${key}`;
+      const GEO_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${search.city},${search.country}&appid=${key}`;
       const response = await axios.get(GEO_URL);
       const { lat, lon } = response.data[0];
       if ([lat, lon].includes(undefined)) {
